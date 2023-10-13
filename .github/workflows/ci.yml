@@ -1,4 +1,4 @@
-name: ci workflow
+name: Ci workflow
 
 on: pull_request
 
@@ -10,5 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install
         uses: npm ci      
+      - name: Tests
+        uses: npm run test
       - name: Tests e2e
-      run: npm run test:e2e:ci
+        run: npm run test:e2e:ci
