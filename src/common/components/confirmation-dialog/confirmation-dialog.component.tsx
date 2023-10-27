@@ -34,7 +34,7 @@ export const ConfirmationDialogComponent: React.FunctionComponent<Props> = (
   return (
     <Dialog open={isOpen}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent aria-label='children'>{children}</DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="secondary" variant="contained">
           {labels.closeButton}
