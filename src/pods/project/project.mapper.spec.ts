@@ -14,35 +14,59 @@ describe('./pods/project/project.mapper', () => {
         expect(result).toEqual(viewModel.createEmptyProject());
       }
     );
-    it.each([null, undefined])(
-      'should return expected result but feeding undefined employees list when project is %p',
-      (project) => {
-        // Arrange
-        const employee: apiModel.Project = {
-          id: 'test id',
-          name: 'test name',
-          isActive: true,
-          externalId: 'external test id',
-          comments: 'Test comments',
-          employees: project,
-        };
+    it('should return expected result but feeding undefined employees list when project is null', () => {
+      // arrange
+      const employee: apiModel.Project = {
+        id: 'test id',
+        name: 'test name',
+        isActive: true,
+        externalId: 'external test id',
+        comments: 'Test comments',
+        employees: null,
+      };
 
-        const expectedResult: viewModel.Project = {
-          id: 'test id',
-          name: 'test name',
-          isActive: true,
-          externalId: 'external test id',
-          comments: 'Test comments',
-          employees: [],
-        };
+      // act
+      const result = mapProjectFromApiToVm(employee);
 
-        // Act
-        const result = mapProjectFromApiToVm(employee);
+      // assert
+      const expectedResult: viewModel.Project = {
+        id: 'test id',
+        name: 'test name',
+        isActive: true,
+        externalId: 'external test id',
+        comments: 'Test comments',
+        employees: [],
+      };
 
-        // Assert
-        expect(result).toEqual(expectedResult);
-      }
-    );
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('should return expected result but feeding undefined employees list when project is undefined', () => {
+      // arrange
+      const employee: apiModel.Project = {
+        id: 'test id',
+        name: 'test name',
+        isActive: true,
+        externalId: 'external test id',
+        comments: 'Test comments',
+        employees: undefined,
+      };
+
+      // act
+      const result = mapProjectFromApiToVm(employee);
+
+      // assert
+      const expectedResult: viewModel.Project = {
+        id: 'test id',
+        name: 'test name',
+        isActive: true,
+        externalId: 'external test id',
+        comments: 'Test comments',
+        employees: [],
+      };
+
+      expect(result).toEqual(expectedResult);
+    });
   });
 
   describe('Project Mapper - Correct Operation Test Cases', () => {

@@ -5,11 +5,12 @@ import { Lookup } from '../../models/index';
 describe('common/components/confirmation-dialog.hook', () => {
   it('should return the Empty Lookup', () => {
     //arrange
+    const { result } = renderHook(() => useConfirmationDialog());
 
     //act
-    const { result } = renderHook(() => useConfirmationDialog());
-    //assert
     const emptyLookup: Lookup = { id: '', name: '' };
+
+    //assert
     expect(result.current.itemToDelete).toEqual(emptyLookup);
     expect(result.current.isOpen).toEqual(false);
     expect(result.current.onAccept).toEqual(expect.any(Function));
